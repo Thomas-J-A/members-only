@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1 Register
+  form(action="", method="POST" enctype="multipart/form-data")
+    label(for="register_form_username") Username
+    input#register_form_username(type="text", name="username", placeholder="catlover74" value=(userInput === undefined ? "" : userInput.username))
+    label(for="register_form_password") Password
+    input#register_form_password(type="password", name="password" value=(userInput === undefined ? "" : userInput.password))
+    label(for="register_form_confirm_password") Confirm Password
+    input#register_form_confirm_password(type="password", name="confirm_password" value=(userInput === undefined ? "" : userInput.confirm_password))
+    label(for="register_form_avatar") Profile Picture
+    input#register_form_avatar(type="file", name="avatar")
+    button(type="submit") Submit
+    a(href="/") Cancel
+
+  if errors
+    ul
+      each error in errors
+        li!= error.msg
