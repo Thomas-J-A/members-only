@@ -2,3 +2,8 @@ extends layout
 
 block content 
   h1 Homepage
+  
+  if currentUser
+    p You are logged in
+  else
+   p You are not logged in 

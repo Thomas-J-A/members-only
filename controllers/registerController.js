@@ -64,7 +64,6 @@ exports.register_post = [
       // and it will be duplicated
       if (req.file) {
         fs.unlink(req.file.path, (err) => {
-          console.log('removing file...');
           if (err) { return next(err); }
         });
       }

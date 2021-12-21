@@ -64,6 +64,13 @@ app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUniniti
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Add current user to local variables
+// and use it to check for logged-in users in views
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+
 // Add imported routes to middleware stack
 app.use('/', indexRouter);
 

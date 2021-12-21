@@ -8,10 +8,30 @@ html(lang="en")
     link(rel="stylesheet", href="stylesheets/style.css")
   body
     header
-      h1 Members Only
-      a(href="/login") Log In
+        h1 Members Only
+          if currentUser
+            p= currentUser.username
+            a(href="/logout") Log Out 
+          else
+            a(href="/login") Log In 
+
+  
     aside
-      a(href="/") Home
-      a(href="/register") Register
+      ul
+        if currentUser
+          li 
+            a(href="/") Home
+          li
+            a(href="/post-message") Post a Message
+          li
+            a(href="/member-register") Become a Member
+          li
+            a(href="/admin-register") Become an Admin
+        else
+          li
+            a(href="/") Home
+          li
+            a(href="/register") Register
+
     section
       block content

@@ -1,7 +1,7 @@
 const express = require('express');
 const indexController = require('../controllers/indexController');
 const registerController = require('../controllers/registerController');
-const loginController = require('../controllers/loginController');
+const sessionController = require('../controllers/sessionController');
 const postController = require('../controllers/postController');
 const upgradeController = require('../controllers/upgradeController');
 
@@ -17,10 +17,13 @@ router.get('/register', registerController.register_get);
 router.post('/register', registerController.register_post);
 
 // GET login page
-router.get('/login', loginController.login_get);
+router.get('/login', sessionController.login_get);
 
 // POST login page
-router.post('/login', loginController.login_post);
+router.post('/login', sessionController.login_post);
+
+// GET logout request (not new view)
+router.get('/logout', sessionController.logout_get);
 
 // GET post message page
 router.get('/post-message', postController.post_message_get);

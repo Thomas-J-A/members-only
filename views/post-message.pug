@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1 Say something insightful...
+
+  form(action="", method="POST")
+    label(for="post_message_title") Title
+    input#post_message_title(type="text", name="title", placeholder="Game Of Thrones finale", value=(post === undefined ? "" : post.title))
+    label(for="post_message_content") Message
+    textarea#post_message_content(name="content", placeholder="That was a complete letdown.") #{ post === undefined ? "" : post.content }
+    button(type="submit") Submit
+    a(href="/") Cancel
+
+  if errors
+    ul
+      each error in errors
+        li!= error.msg
