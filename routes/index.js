@@ -41,6 +41,6 @@ router.post('/member-register', upgradeController.member_register_post);
 router.get('/admin-register', upgradeController.admin_register_get);
 
 // POST become an admin page
-router.post('/admin_register', upgradeController.admin_register_post);
+router.post('/admin-register', upgradeController.admin_register_post);
 
 module.exports = router;
