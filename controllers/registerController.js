@@ -4,8 +4,22 @@ const User = require('../models/user');
 const { body, validationResult } = require('express-validator');
 
 // Configure multer middleware for file uploads
+// const multer = require('multer');
+// const upload = multer({ dest: './public/uploads/' });
+
 const multer = require('multer');
-const upload = multer({ dest: './public/uploads/' });
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    // relative to root directory? './' okay, '../' not okay
+    cb(null, 'public/uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${ file.fieldname }-${ Date.now() }`);
+  },
+});
+
+const upload = multer({ storage });
 
 exports.register_get = (req, res) => {
   res.render('register');
@@ -84,7 +98,7 @@ exports.register_post = [
       const user = new User({
         username: req.body.username,
         password: hash,
-        avatarURL: req.file.path,
+        avatarURL: `uploads/${ req.file.filename }`,
         isMember: false,
         isAdmin: false,
       });

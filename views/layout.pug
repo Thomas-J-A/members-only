@@ -10,7 +10,7 @@ html(lang="en")
     header
         h1 Members Only
           if currentUser
-            p= currentUser.username
+            p!= currentUser.username
             a(href="/logout") Log Out 
           else
             a(href="/login") Log In 

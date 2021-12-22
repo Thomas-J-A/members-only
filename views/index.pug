@@ -3,7 +3,17 @@ extends layout
 block content 
   h1 Homepage
   
-  if currentUser
-    p You are logged in
-  else
-   p You are not logged in 
+  //- if currentUser
+  //-   p You are logged in
+  //- else
+  //-  p You are not logged in
+
+  .posts
+    if posts.length > 0
+      each post in posts
+        .post
+          img(src=post.user.avatarURL)
+          h1!= post.title
+          p!= post.content
+    else
+      p There are no posts.

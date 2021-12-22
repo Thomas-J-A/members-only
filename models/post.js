@@ -6,7 +6,7 @@ const postSchema = new Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
   timestamp: { type: Date, required: true },
-  user: { type: Schema.Types.ObjectId, ref: 'Post', required: true },
+  user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 });
 
 // Export model

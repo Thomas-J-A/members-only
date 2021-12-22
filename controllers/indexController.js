@@ -1,3 +1,12 @@
+const Post = require('../models/post');
+
 exports.index_get = (req, res) => {
-  res.render('index');
+  // Retrieve all posts from database
+  Post
+    .find()
+    .populate('user')
+    .exec((err, posts) => {
+      if (err) { return next(err); }
+      res.render('index', { posts });
+    })
 };
