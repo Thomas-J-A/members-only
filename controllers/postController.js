@@ -34,3 +34,11 @@ exports.post_message_post = [
     });
   },
 ];
+
+exports.delete_message_post = (req, res, next) => {
+  const postId = req.body['delete-message'];
+  Post.findByIdAndRemove(postId, (err) => {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+};

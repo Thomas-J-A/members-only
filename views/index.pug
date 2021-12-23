@@ -2,18 +2,52 @@ extends layout
 
 block content 
   h1 Homepage
-  
-  //- if currentUser
-  //-   p You are logged in
-  //- else
-  //-  p You are not logged in
 
   .posts
     if posts.length > 0
-      each post in posts
-        .post
-          img(src=post.user.avatarURL)
-          h1!= post.title
-          p!= post.content
+      if currentUser
+        // A user is logged in
+        if currentUser.isMember
+          // User is a member - show all avatars and usernames
+          each post in posts
+            .post
+              img(src=post.user.avatarURL)
+              if currentUser.isAdmin
+                // User is also an admin - show delete button
+                form(action="/delete-message", method="POST")
+                  input(type="hidden", name="delete-message", value=post._id)
+                  button(type="submit") Delete
+              h1!= post.title
+              p!= post.content
+              span!= post.user.username
+              span= post.timestamp
+        else
+          // User is logged in but not a member
+          each post in posts
+            if post.user.username === currentUser.username
+              // Own posts aren't anonymous
+              .post
+                img(src=post.user.avatarURL)
+                h1!= post.title
+                p!= post.content
+                span!= post.user.username
+                span= post.timestamp
+            else
+              // Posts made by other uses are anonymous
+              .post
+                img(src="images/anonymous.jpeg")
+                h1!= post.title
+                p!= post.content
+                span Anonymous
+                span= post.timestamp
+      else
+        // No user is logged in
+        each post in posts
+          .post
+            img(src="images/anonymous.jpeg")
+            h1!= post.title
+            p!= post.content
+            span Anonymous
+            span= post.timestamp
     else
       p There are no posts.

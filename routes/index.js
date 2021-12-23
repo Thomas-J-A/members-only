@@ -35,6 +35,9 @@ router.get('/post-message', checkAuthenticated, postController.post_message_get)
 // POST post message page
 router.post('/post-message', postController.post_message_post);
 
+// POST delete post (not new view)
+router.post('/delete-message', postController.delete_message_post);
+
 // GET become a member page
 router.get('/member-register', checkAuthenticated, upgradeController.member_register_get);
 
