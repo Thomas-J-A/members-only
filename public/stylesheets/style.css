@@ -346,3 +346,10 @@ section {
 .post_detail_footer_username {
   color: #0d6efd;
 }
+
+.posts-container_no-posts-msg {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+}
