@@ -1,18 +1,23 @@
 extends layout
 
 block content
-  h1 Become a Member
+  .member-register_container
+    .member-register_container_left
+      img(src="images/member-register.jpg", alt="Gift box on tabletop with tag saying open me")
+    .member-register_container_right
+      h1 Become a Member
 
-  if currentUser.isMember
-    p You are already a member.
-  else
-    form(action="", method="POST")
-      label(for="become_member_password") Password
-      input#become_member_password(type="password", name="password", value=(password === undefined ? "" : password))
-      button(type="submit") Submit
-      a(href="/") Cancel
+      if currentUser.isMember
+        p.member-register_already-member-msg You are already a member.
+      else
+        form.member-register_form(action="", method="POST")
+          label(for="become-member_password") Password
+          input#become-member_password(type="password", name="password", placeholder="Enter member password", value=(password === undefined ? "" : password))
+          .member-register_form_buttons
+            button(type="submit") Submit
+            a(href="/") Cancel
 
-    if errors
-      ul
-        each error in errors
-          li!= error.msg
+        if errors
+          ul
+            each error in errors
+              li.member-register_form_error!= error.msg

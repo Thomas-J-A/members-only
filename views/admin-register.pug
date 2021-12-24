@@ -1,18 +1,23 @@
 extends layout
 
 block content
-  h1 Become an Admin
+  .admin-register_container
+    .admin-register_container_left
+      img(src="images/admin-register.jpg", alt="Man in office typing on keyboard")
+    .admin-register_container_right
+      h1 Become an Admin
 
-  if currentUser.isAdmin
-    p You are already an admin.
-  else
-    form(action="", method="POST")
-      label(for="become_admin_password") Password
-      input#become_admin_password(type="password", name="password", value=(password === undefined ? "" : password))
-      button(type="submit") Submit
-      a(href="/") Cancel
+      if currentUser.isAdmin
+        p.admin-register_already-admin-msg You are already an admin.
+      else
+        form.admin-register_form(action="", method="POST")
+          label(for="become_admin_password") Password
+          input#become_admin_password(type="password", name="password", placeholder="Enter admin password" value=(password === undefined ? "" : password))
+          .admin-register_form_buttons
+            button(type="submit") Submit
+            a(href="/") Cancel
 
-    if errors
-      ul
-        each error in errors
-          li!= error.msg
+        if errors
+          ul
+            each error in errors
+              li.admin-register_form_error!= error.msg

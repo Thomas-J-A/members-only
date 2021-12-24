@@ -1,21 +1,26 @@
 extends layout
 
 block content
-  h1 Register
-  
-  form(action="", method="POST" enctype="multipart/form-data")
-    label(for="register_form_username") Username
-    input#register_form_username(type="text", name="username", placeholder="catlover74" value=(userInput === undefined ? "" : userInput.username))
-    label(for="register_form_password") Password
-    input#register_form_password(type="password", name="password" value=(userInput === undefined ? "" : userInput.password))
-    label(for="register_form_confirm_password") Confirm Password
-    input#register_form_confirm_password(type="password", name="confirm_password" value=(userInput === undefined ? "" : userInput.confirm_password))
-    label(for="register_form_avatar") Profile Picture
-    input#register_form_avatar(type="file", name="avatar")
-    button(type="submit") Submit
-    a(href="/") Cancel
+  .register-container
+    .register-container_left
+      img(src="/images/register.jpg", alt="Notebook, pen, and laptop on table")
+    .register-container_right
+      h1 Register
+      
+      form.register-form(action="", method="POST" enctype="multipart/form-data", autocomplete="off")
+        label(for="register-form_username") Username
+        input#register-form_username(type="text", name="username", placeholder="Enter your username", value=(userInput === undefined ? "" : userInput.username))
+        label(for="register-form_password") Password
+        input#register-form_password(type="password", name="password", placeholder="Enter your password", value=(userInput === undefined ? "" : userInput.password))
+        label(for="register-form_confirm-password") Confirm Password
+        input#register-form_confirm-password(type="password", name="confirm_password", placeholder="Confirm your password" value=(userInput === undefined ? "" : userInput.confirm_password))
+        label(for="register-form_avatar") Profile Picture
+        input#register-form_avatar(type="file", name="avatar")
+        .register-form_buttons
+          button(type="submit") Submit
+          a(href="/") Cancel
 
-  if errors
-    ul
-      each error in errors
-        li!= error.msg
+      if errors
+        ul
+          each error in errors
+            li.register-form_error!= error.msg

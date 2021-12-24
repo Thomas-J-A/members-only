@@ -1,17 +1,24 @@
 extends layout
 
 block content
-  h1 Log In
+  .login-container
+    .login-container_left
+      img(src="/images/login.jpg", alt="Doorway opening into light space")
+    .login-container_right
+      h1 Log In
 
-  form(action="", method="post")
-    label(for="login_form_username") Username
-    input#login_form_username(type="text", name="username", placeholder="catlover74" value=(userInput === undefined ? "" : userInput.username))
-    label(for="login_form_password") Password
-    input#login_form_password(type="password", name="password", value=(userInput === undefined ? "" : userInput.password))
-    button(type="submit") Submit
-    a(href="/") Cancel
+      form.login-form(action="", method="post", autocomplete="off")
+        label(for="login_form_username") Username
+        input#login_form_username(type="text", name="username", placeholder="Enter your username", value=(userInput === undefined ? "" : userInput.username))
+        label(for="login_form_password") Password
+        input#login_form_password(type="password", name="password", placeholder="Enter your password", value=(userInput === undefined ? "" : userInput.password))
+        .login-form_buttons
+          button(type="submit") Submit
+          a(href="/") Cancel
+      
+      if errors
+        ul
+          each error in errors
+            li.login-form_error!= error.msg
 
-  if errors
-    ul
-      each error in errors
-        li!= error.msg
+      p.registration-prompt Don't have an account? #[a(href="/register") Register here]

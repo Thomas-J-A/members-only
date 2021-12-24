@@ -6,32 +6,47 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     link(rel="stylesheet", href="stylesheets/reset.css")
     link(rel="stylesheet", href="stylesheets/style.css")
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Waterfall&display=swap" rel="stylesheet"> 
+    <script src="https://kit.fontawesome.com/fee433bc58.js" crossorigin="anonymous"></script>
   body
     header
         h1 Members Only
+        .header_account-status
           if currentUser
+            i(class="fas fa-user")
             p!= currentUser.username
+            i(class="fas fa-sign-in-alt sign-out-icon")
             a(href="/logout") Log Out 
           else
+            i(class="fas fa-sign-in-alt")
             a(href="/login") Log In 
 
   
-    aside
-      ul
-        if currentUser
-          li 
-            a(href="/") Home
-          li
-            a(href="/post-message") Post a Message
-          li
-            a(href="/member-register") Become a Member
-          li
-            a(href="/admin-register") Become an Admin
-        else
-          li
-            a(href="/") Home
-          li
-            a(href="/register") Register
+    .container
+      aside
+        ul.aside_nav
+          if currentUser
+            li 
+              i(class="fas fa-home")
+              a(href="/") Home
+            li
+              i(class="fas fa-envelope")
+              a(href="/post-message") Post a Message
+            li
+              i(class="fas fa-user-tie")
+              a(href="/member-register") Become a Member
+            li
+              i(class="fas fa-user-cog")
+              a(href="/admin-register") Become an Admin
+          else
+            li
+              i(class="fas fa-home")
+              a(href="/") Home
+            li
+              i(class="fas fa-user-plus")
+              a(href="/register") Register
 
-    section
-      block content
+      section
+        block content

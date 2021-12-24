@@ -1,9 +1,7 @@
 extends layout
 
-block content 
-  h1 Homepage
-
-  .posts
+block content
+  .posts-container
     if posts.length > 0
       if currentUser
         // A user is logged in
@@ -12,15 +10,18 @@ block content
           each post in posts
             .post
               img(src=post.user.avatarURL)
-              if currentUser.isAdmin
-                // User is also an admin - show delete button
-                form(action="/delete-message", method="POST")
-                  input(type="hidden", name="delete-message", value=post._id)
-                  button(type="submit") Delete
-              h1!= post.title
-              p!= post.content
-              span!= post.user.username
-              span= post.timestamp
+              .post_detail
+                .post_detail_header
+                  h1!= post.title
+                  if currentUser.isAdmin
+                    // User is also an admin - show delete button
+                    form(action="/delete-message", method="POST")
+                      input(type="hidden", name="delete-message", value=post._id)
+                      button(type="submit") Delete
+                p.post_detail_content!= post.content
+                .post_detail_footer
+                  p Posted by #[span.post_detail_footer_username!= post.user.username]
+                  span= post.timestamp.toLocaleString()
         else
           // User is logged in but not a member
           each post in posts
@@ -28,26 +29,35 @@ block content
               // Own posts aren't anonymous
               .post
                 img(src=post.user.avatarURL)
-                h1!= post.title
-                p!= post.content
-                span!= post.user.username
-                span= post.timestamp
+                .post_detail
+                  .post_detail_header
+                    h1!= post.title
+                  p.post_detail_content!= post.content
+                  .post_detail_footer
+                    p Posted by #[span.post_detail_footer_username!= post.user.username]
+                    span= post.timestamp.toLocaleString()
             else
               // Posts made by other uses are anonymous
               .post
                 img(src="images/anonymous.jpeg")
-                h1!= post.title
-                p!= post.content
-                span Anonymous
-                span= post.timestamp
+                .post_detail
+                  .post_detail_header
+                    h1!= post.title
+                  p.post_detail_content!= post.content
+                  .post_detail_footer
+                    p Posted by #[span.post_detail_footer_username Anonymous]
+                    span= post.timestamp.toLocaleString()
       else
         // No user is logged in
         each post in posts
           .post
             img(src="images/anonymous.jpeg")
-            h1!= post.title
-            p!= post.content
-            span Anonymous
-            span= post.timestamp
+            .post_detail
+              .post_detail_header
+                h1!= post.title
+              p.post_detail_content!= post.content
+              .post_detail_footer
+                p Posted by #[span.post_detail_footer_username Anonymous]
+                span= post.timestamp.toLocaleString()
     else
       p There are no posts.

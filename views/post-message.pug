@@ -1,17 +1,22 @@
 extends layout
 
 block content
-  h1 Say something insightful...
+  .post-message_container
+    .post-message_container_left
+      img(src="images/post-message.jpg", alt="Vintage envelope and ink pot")
+    .post-message_container_right
+      h1 Say something insightful...
 
-  form(action="", method="POST")
-    label(for="post_message_title") Title
-    input#post_message_title(type="text", name="title", placeholder="Game Of Thrones finale", value=(post === undefined ? "" : post.title))
-    label(for="post_message_content") Message
-    textarea#post_message_content(name="content", placeholder="That was a complete letdown.") #{ post === undefined ? "" : post.content }
-    button(type="submit") Submit
-    a(href="/") Cancel
+      form.post-message_form(action="", method="POST", autocomplete="off")
+        label(for="post-message_title") Title
+        input#post-message_title(type="text", name="title", placeholder="Enter the title", value=(post === undefined ? "" : post.title))
+        label(for="post-message_content") Message
+        textarea#post-message_content(name="content", placeholder="Enter your message") #{ post === undefined ? "" : post.content }
+        .post-message_form_buttons
+          button(type="submit") Submit
+          a(href="/") Cancel
 
-  if errors
-    ul
-      each error in errors
-        li!= error.msg
+      if errors
+        ul
+          each error in errors
+            li.post-message_form_error!= error.msg

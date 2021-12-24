@@ -1,3 +1,348 @@
+body {
+  height: 100vh;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
 img {
   height: 200px;
+}
+
+
+/*========================
+          HEADER
+========================*/
+
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 6rem;
+  padding: 1.7rem;
+  border-bottom: 1px solid #ddd;
+  background-color: #eee;
+}
+
+header h1 {
+  font-family: 'Waterfall', cursive;
+  font-size: 4.5rem;
+  font-style: italic;
+}
+
+.header_account-status {
+  display: flex;
+  align-items: baseline;
+  font-size: 1.5rem;
+}
+
+.header_account-status i {
+  margin-right: .5rem;
+}
+
+.header_account-status p {
+  margin-right: 1.3rem;
+}
+
+.sign-out-icon {
+  transform: rotate(180deg);
+}
+
+
+/*========================
+        SIDE NAV
+========================*/
+
+
+.container {
+  display: flex;
+}
+
+aside {
+  height: calc(100vh - 6rem);
+  width: 16%;
+  background-color: #37474f;
+}
+
+.aside_nav li {
+  display: flex;
+  align-items: baseline;
+  padding: 1rem;
+  border-bottom: 1px solid #333;
+  font-size: 1.2rem;
+}
+
+aside i {
+  margin-right: .6rem;
+}
+
+aside a:hover {
+  opacity: .7;
+}
+
+aside a,
+aside i {
+  color: #fff;
+}
+
+
+/*========================
+        SECTION
+========================*/
+
+
+section {
+  position: relative;
+  height: calc(100vh - 6rem);
+  width: 84%;
+  background-color: #333;
+  overflow-y: scroll;
+}
+
+.login-container,
+.register-container,
+.member-register_container,
+.admin-register_container,
+.post-message_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  border-radius: 5px;
+  box-shadow: 0 10px 15px rgba(0,0,0,1);
+  background-color: #eee;
+}
+
+.login-container_left img,
+.register-container_left img,
+.member-register_container_left img,
+.admin-register_container_left img,
+.post-message_container_left img {
+  display: block;
+  height: 450px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.register-container_left img {
+  height: 690px;
+}
+
+.post-message_container_left img {
+  height: 550px;
+}
+
+.login-container_right,
+.register-container_right,
+.member-register_container_right,
+.admin-register_container_right,
+.post-message_container_right {
+  position: relative;
+  padding: 2rem;
+}
+
+.login-container_right h1,
+.register-container_right h1,
+.member-register_container_right h1,
+.admin-register_container_right h1,
+.post-message_container_right h1 {
+  margin-bottom: 2rem;
+  font-size: 3.5rem;
+}
+
+.member-register_already-member-msg,
+.admin-register_already-admin-msg {
+  font-size: 1.5rem;
+  color: #f00;
+}
+
+.login-form label,
+.register-form label,
+.member-register_form label,
+.admin-register_form label,
+.post-message_form label {
+  display: block;
+  font-size: 1.5rem;
+}
+
+.login-form input,
+.register-form input,
+.member-register_form input,
+.admin-register_form input,
+.post-message_form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: .5rem 0;
+  border: none;
+  border-bottom: 1px solid #000;
+  font-size: 1rem;
+  background: transparent;
+}
+
+#post-message_content {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding: .5rem;
+  border: 1px solid #000;
+  font-size: 1rem;
+  background: transparent;
+}
+
+#register-form_avatar {
+  border-bottom: none;
+}
+
+.login-form input:focus,
+.register-form input:focus,
+.member-register_form input:focus,
+.admin-register_form input:focus,
+.post-message_form input:focus {
+  outline: none;
+}
+
+#post-message_content:focus {
+  outline: none;
+}
+
+.login-form_buttons,
+.register-form_buttons,
+.member-register_form_buttons,
+.admin-register_form_buttons,
+.post-message_form_buttons {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  margin-bottom: 1.7rem;
+}
+
+.login-form_buttons button,
+.register-form_buttons button,
+.member-register_form_buttons button,
+.admin-register_form_buttons button,
+.post-message_form_buttons button {
+  margin-right: .5rem;
+  padding: .5rem 1rem;
+  border: 1px solid #0d6efd;
+  border-radius: 5px;
+  background-color: #0d6efd;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.login-form_buttons a,
+.register-form_buttons a ,
+.member-register_form_buttons a,
+.admin-register_form_buttons a,
+.post-message_form_buttons a {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  border-radius: 5px;
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.login-form_error,
+.register-form_error,
+.member-register_form_error,
+.admin-register_form_error,
+.post-message_form_error {
+  color: #f00;
+  margin-bottom: .3rem;
+}
+
+.login-container_right .registration-prompt {
+  position: absolute;
+  bottom: 1.2rem;
+  font-size: .9rem;
+}
+
+.login-container_right .registration-prompt a {
+  color: #0d6efd;
+}
+
+
+/*========================
+        POSTS
+========================*/
+
+
+.posts-container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.post {
+  display: flex;
+  margin-bottom: 1rem;
+  padding: .5rem;
+  border-radius: 5px;
+  background-color: #eee;
+}
+
+.post:first-of-type {
+  margin-top: 1rem;
+}
+
+.post img {
+  display: inline-block;
+  height: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  border-radius: 5px;
+}
+
+.post_detail {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: .5rem;
+  padding: 1.2rem;
+}
+
+.post_detail_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .8rem;
+}
+
+.post_detail_header h1 {
+  font-size: 2.5rem;
+}
+
+.post_detail_header button {
+  padding: .5rem 1rem;
+  border: 1px solid #0d6efd;
+  border-radius: 5px;
+  background-color: #0d6efd;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.post_detail_content {
+  font-size: 1.3rem;
+}
+
+.post_detail_footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.post_detail_footer_username {
+  color: #0d6efd;
 }
